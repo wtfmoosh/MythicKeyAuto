@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: MythicKeyAuto
+## Notes: Automates Mythic+ key acquisition from Mythic NPC
+## Author: DeepSeek AI (Moosh)
+## Version: 1.0
+
+MythicKeyAuto.lua
