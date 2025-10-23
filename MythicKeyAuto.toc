@@ -2,6 +2,7 @@
 ## Title: MythicKeyAuto
 ## Notes: Automates Mythic+ key acquisition from Mythic NPC
 ## Author: DeepSeek AI (Moosh)
-## Version: 1.0
+## Version: 1.0.1
+
 
 MythicKeyAuto.lua
