@@ -118,7 +118,82 @@ SLASH_MYTHICKEYAUTO2 = "/mythickeyauto"
 SlashCmdList["MYTHICKEYAUTO"] = function(msg)
     msg = string.lower(msg or "")
     
-    if msg == "off" or msg == "disable" or msg == "0" then
+    -- Handle key target commands FIRST to avoid conflicts
+    -- Scarlet Monastery Keys
+    if msg == "armory" then
+        SetTargetItem("Mythic Keystone : Scarlet Monastery - Armory", "ARMORY")
+        return
+    elseif msg == "gy" then
+        SetTargetItem("Mythic Keystone : Scarlet Monastery - Graveyard", "GY")
+        return
+    elseif msg == "cath" then
+        SetTargetItem("Mythic Keystone : Scarlet Monastery - Cathedral", "CATH")
+        return
+    elseif msg == "lib" then
+        SetTargetItem("Mythic Keystone : Scarlet Monastery - Library", "LIB")
+        return
+        
+    -- Other Dungeons
+    elseif msg == "rfc" then
+        SetTargetItem("Mythic Keystone : Ragefire Chasm", "RFC")
+        return
+    elseif msg == "rfk" then
+        SetTargetItem("Mythic Keystone : Razorfen Kraul", "RFK")
+        return
+    elseif msg == "zf" then
+        SetTargetItem("Mythic Keystone : Zul'Farrak (ZF)", "ZF")
+        return
+    elseif msg == "bfd" then
+        SetTargetItem("Mythic Keystone : Blackfathom Deeps", "BFD")
+        return
+        
+    -- Dire Maul
+    elseif msg == "dmn" then
+        SetTargetItem("Mythic Keystone : Dire Maul - North", "DMN")
+        return
+    elseif msg == "dmw" then
+        SetTargetItem("Mythic Keystone : Dire Maul - West", "DMW")
+        return
+    elseif msg == "dme" then
+        SetTargetItem("Mythic Keystone : Dire Maul - East", "DME")
+        return
+        
+    -- Maraudon
+    elseif msg == "purple" then
+        SetTargetItem("Mythic Keystone : Maraudon - Purple Crystals", "PURPLE")
+        return
+    elseif msg == "orange" then
+        SetTargetItem("Mythic Keystone : Maraudon - Orange Crystals", "ORANGE")
+        return
+    elseif msg == "pristine" then
+        SetTargetItem("Mythic Keystone : Maraudon - Pristine Waters", "PRISTINE")
+        return
+        
+    -- More Dungeons
+    elseif msg == "uldaman" then
+        SetTargetItem("Mythic Keystone : Uldaman", "ULDAMAN")
+        return
+    elseif msg == "scholo" then
+        SetTargetItem("Mythic Keystone : Scholomance", "SCHOLO")
+        return
+    elseif msg == "dm" then
+        SetTargetItem("Mythic Keystone : Deadmines (DM)", "DM")
+        return
+    elseif msg == "gnomeregan" then
+        SetTargetItem("Mythic Keystone : Gnomeregan", "GNOMEREGAN")
+        return
+    elseif msg == "brd" then
+        SetTargetItem("Mythic Keystone : Blackrock Depths - Prison", "BRD")
+        return
+    elseif msg == "sfk" then
+        SetTargetItem("Mythic Keystone : Shadowfang Keep", "SFK")
+        return
+    elseif msg == "stockades" then
+        SetTargetItem("Mythic Keystone : Stormwind Stockades", "STOCKADES")
+        return
+        
+    -- Basic controls (processed after key commands)
+    elseif msg == "off" or msg == "disable" or msg == "0" then
         addonEnabled = false
         print("|cFF00FF00MythicKeyAuto:|r |cFFFF0000DISABLED|r - Will not automate NPC interactions")
         
@@ -126,65 +201,13 @@ SlashCmdList["MYTHICKEYAUTO"] = function(msg)
         addonEnabled = true
         print("|cFF00FF00MythicKeyAuto:|r |cFF00FF00ENABLED|r - Will automate NPC interactions")
         
-    elseif msg == "stop" or msg == "armory" then
+    elseif msg == "stop" then
         stopOnTarget = not stopOnTarget
         local stopStatus = stopOnTarget and "|cFF00FF00ENABLED|r" or "|cFFFF0000DISABLED|r"
         print("|cFF00FF00MythicKeyAuto:|r Stop on target key: " .. stopStatus)
         if not stopOnTarget then
             print("|cFFFFFF00Note:|r Addon will continue cycling even when target key is in inventory")
         end
-        
-    -- Scarlet Monastery Keys
-    elseif msg == "armory" then
-        SetTargetItem("Mythic Keystone : Scarlet Monastery - Armory", "ARMORY")
-    elseif msg == "gy" then
-        SetTargetItem("Mythic Keystone : Scarlet Monastery - Graveyard", "GY")
-    elseif msg == "cath" then
-        SetTargetItem("Mythic Keystone : Scarlet Monastery - Cathedral", "CATH")
-    elseif msg == "lib" then
-        SetTargetItem("Mythic Keystone : Scarlet Monastery - Library", "LIB")
-        
-    -- Other Dungeons
-    elseif msg == "rfc" then
-        SetTargetItem("Mythic Keystone : Ragefire Chasm", "RFC")
-    elseif msg == "rfk" then
-        SetTargetItem("Mythic Keystone : Razorfen Kraul", "RFK")
-    elseif msg == "zf" then
-        SetTargetItem("Mythic Keystone : Zul'Farrak (ZF)", "ZF")
-    elseif msg == "bfd" then
-        SetTargetItem("Mythic Keystone : Blackfathom Deeps", "BFD")
-        
-    -- Dire Maul
-    elseif msg == "dmn" then
-        SetTargetItem("Mythic Keystone : Dire Maul - North", "DMN")
-    elseif msg == "dmw" then
-        SetTargetItem("Mythic Keystone : Dire Maul - West", "DMW")
-    elseif msg == "dme" then
-        SetTargetItem("Mythic Keystone : Dire Maul - East", "DME")
-        
-    -- Maraudon
-    elseif msg == "purple" then
-        SetTargetItem("Mythic Keystone : Maraudon - Purple Crystals", "PURPLE")
-    elseif msg == "orange" then
-        SetTargetItem("Mythic Keystone : Maraudon - Orange Crystals", "ORANGE")
-    elseif msg == "pristine" then
-        SetTargetItem("Mythic Keystone : Maraudon - Pristine Waters", "PRISTINE")
-        
-    -- More Dungeons
-    elseif msg == "uldaman" then
-        SetTargetItem("Mythic Keystone : Uldaman", "ULDAMAN")
-    elseif msg == "scholo" then
-        SetTargetItem("Mythic Keystone : Scholomance", "SCHOLO")
-    elseif msg == "dm" then
-        SetTargetItem("Mythic Keystone : Deadmines (DM)", "DM")
-    elseif msg == "gnomeregan" then
-        SetTargetItem("Mythic Keystone : Gnomeregan", "GNOMEREGAN")
-    elseif msg == "brd" then
-        SetTargetItem("Mythic Keystone : Blackrock Depths - Prison", "BRD")
-    elseif msg == "sfk" then
-        SetTargetItem("Mythic Keystone : Shadowfang Keep", "SFK")
-    elseif msg == "stockades" then
-        SetTargetItem("Mythic Keystone : Stormwind Stockades", "STOCKADES")
         
     elseif msg == "status" or msg == "" then
         local status = addonEnabled and "|cFF00FF00ENABLED|r" or "|cFFFF0000DISABLED|r"
